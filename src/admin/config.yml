@@ -1,7 +1,10 @@
 backend:
   # Use netlify identity as backend
-  name: git-gateway
+  # name: git-gateway
+  name: proxy
+  proxy_url: http://localhost:8081/api/v1
   branch: master
+  search: false
   ### enable below lines for github integration ###
   # name: github
   # repo: surjithctly/neat-starter
@@ -12,9 +15,29 @@ public_folder: "/static/img"
 local_backend: true
 # publish_mode: editorial_workflow
 collections:
-  - label: "Blog"
-    name: "blog"
-    folder: "src/posts"
+  - label: "Deutscher Blog"
+    name: "de_blog"
+    folder: "src/de/posts"
+    create: true
+    slug: "{{pagename}}"
+    editor:
+      preview: false
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Pagename", name: "pagename", widget: "string" }
+      - { label: "Description", name: "description", widget: "string" }
+      - { label: "Author", name: "author", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Body", name: "body", widget: "markdown" }
+      - widget: select
+        label: "tags"
+        name: "tags"
+        multiple: true
+        create: true
+        options: ["Tags", "created", "from", "config.yml"]
+  - label: "Englischer Blog"
+    name: "en_blog"
+    folder: "src/en/posts"
     create: true
     editor:
       preview: false
@@ -41,12 +64,23 @@ collections:
         fields:
           - label: Nav Items
             name: items
-            widget: list
-            allow_add: false
+            widget: object
             collapsed: false
             fields:
-              - { label: Title, name: text, widget: string }
-              - { label: URL, name: url, widget: string }
+              - label: Deutsch
+                name: de
+                widget: list
+                collapse: true
+                fields:
+                  - { label: Text, name: text, widget: string }
+                  - { label: Url, name: url, widget: string }
+              - label: Englisch
+                name: en
+                widget: list
+                collapse: true
+                fields:
+                  - { label: Text, name: text, widget: string }
+                  - { label: Url, name: url, widget: string }
       - label: "Quick Links"
         name: "links"
         file: "src/_data/quicklinks.yaml"
