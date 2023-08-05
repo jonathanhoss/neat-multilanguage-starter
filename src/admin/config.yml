@@ -1,8 +1,9 @@
 backend:
   # Use netlify identity as backend
-  # name: git-gateway
-  name: proxy
-  proxy_url: http://localhost:8081/api/v1
+  name: git-gateway
+  # For Local development start: npx netlify-cms-proxy-server
+  # name: proxy
+  # proxy_url: http://localhost:8081/api/v1
   branch: master
   search: false
   ### enable below lines for github integration ###
@@ -19,12 +20,13 @@ collections:
     name: "de_blog"
     folder: "src/de/posts"
     create: true
-    slug: "{{pagename}}"
+    slug: "{{filename}}"
     editor:
       preview: false
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Pagename", name: "pagename", widget: "string" }
+      # Filename needs to be the same for all Languages to enable switch Languages in Post
+      - { label: "filename", name: "filename", widget: "string" }
       - { label: "Description", name: "description", widget: "string" }
       - { label: "Author", name: "author", widget: "string" }
       - { label: "Publish Date", name: "date", widget: "datetime" }
@@ -39,10 +41,12 @@ collections:
     name: "en_blog"
     folder: "src/en/posts"
     create: true
+    slug: "{{filename}}"
     editor:
       preview: false
     fields:
       - { label: "Title", name: "title", widget: "string" }
+      - { label: "filename", name: "filename", widget: "string" }
       - { label: "Description", name: "description", widget: "string" }
       - { label: "Author", name: "author", widget: "string" }
       - { label: "Publish Date", name: "date", widget: "datetime" }
