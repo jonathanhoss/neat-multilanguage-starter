@@ -1,7 +1,7 @@
 ---
 title: Dies ist mein zweiter Beitrag
 description: Bringen Sie gewinnbringende Überlebensstrategien mit an den Tisch, um eine proaktive Dominanz sicherzustellen. Am Ende des Tages geht es voran, und ein neues Normal, das sich aus der Generation X entwickelt hat, steuert auf eine optimierte Cloud-Lösung zu.
-date: 2020-09-02
+date: 2023-09-02
 author: Surjith S M
 tags:
   - nummer-2

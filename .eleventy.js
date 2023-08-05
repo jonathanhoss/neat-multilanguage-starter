@@ -51,7 +51,7 @@ module.exports = function (eleventyConfig) {
     return collection
       .getFilteredByGlob("./src/de/posts/*.md")
       .sort((a, b) =>
-        Number(a.data.displayOrder) > Number(b.data.displayOrder) ? 1 : -1
+        Number(a.data.date) > Number(b.data.date) ? 1 : -1
       );
   });
 
@@ -60,7 +60,7 @@ module.exports = function (eleventyConfig) {
     return collection
       .getFilteredByGlob("./src/en/posts/*.md")
       .sort((a, b) =>
-        Number(a.data.displayOrder) > Number(b.data.displayOrder) ? 1 : -1
+        Number(a.data.date) > Number(b.data.date) ? 1 : -1
       );
   });
 
