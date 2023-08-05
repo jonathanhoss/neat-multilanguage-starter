@@ -24,7 +24,7 @@ German: example-post
 ### 1\. Clone this Repository
 
 ```
-git clone https://github.com/jonathanhoss/neat-starter.git
+git clone git clone https://github.com/jonathanhoss/neat-multilanguage-starter.git
 ```
 
 ### 2\. Navigate to the directory
