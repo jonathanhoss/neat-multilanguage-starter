@@ -2,6 +2,8 @@ const yaml = require("js-yaml");
 const { DateTime } = require("luxon");
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const htmlmin = require("html-minifier");
+const { EleventyI18nPlugin } = require("@11ty/eleventy");
+
 
 module.exports = function (eleventyConfig) {
   // Disable automatic use of your .gitignore
@@ -37,6 +39,31 @@ module.exports = function (eleventyConfig) {
 
   // Copy favicon to route of /_site
   eleventyConfig.addPassthroughCopy("./src/favicon.ico");
+
+  eleventyConfig.addPlugin(EleventyI18nPlugin, {
+    // any valid BCP 47-compatible language tag is supported
+    defaultLanguage: "de", // Required, this site uses "en"
+    // errorMode: "allow-fallback"
+  });
+
+  // Returns project items, sorted by display order
+  eleventyConfig.addCollection("de_blog", (collection) => {
+    return collection
+      .getFilteredByGlob("./src/de/posts/*.md")
+      .sort((a, b) =>
+        Number(a.data.displayOrder) > Number(b.data.displayOrder) ? 1 : -1
+      );
+  });
+
+  // Returns project items, sorted by display order
+  eleventyConfig.addCollection("en_blog", (collection) => {
+    return collection
+      .getFilteredByGlob("./src/en/posts/*.md")
+      .sort((a, b) =>
+        Number(a.data.displayOrder) > Number(b.data.displayOrder) ? 1 : -1
+      );
+  });
+
 
   // Minify HTML
   eleventyConfig.addTransform("htmlmin", function (content, outputPath) {

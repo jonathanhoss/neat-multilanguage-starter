@@ -8,7 +8,7 @@ prism: true
         <h1 class="font-bold text-5xl">{{title}}</h1>
         <p class="text-center text-base leading-6 font-medium text-gray-500">
             <time> {{ date | readableDate }}
-                by
+                {{ multilang.by[locale] }}
                 <a>{{ author }}</a>
 
             </time>

@@ -1,0 +1,10 @@
+{% for link in page.url | locale_links %}
+  <a
+    class="text-ml inline-block text-gray-500 no-underline hover:text-indigo-500 py-2 px-4"
+    href="{{ link.url }}"
+    lang="{{ link.lang }}"
+    hreflang="{{ link.lang }}"
+  >
+    {{ link.lang | upper }}</a
+  >
+{% endfor %}
